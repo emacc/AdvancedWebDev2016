@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <p></p>
+        </div>
+        <script type="text/javascript">
+            'use strict';
+
+function makeRequest(url) {
+            
+                var promise = new Promise( httpPromise );
+                
+                function httpPromise(resolve, reject) {
+                    var httpRequest = new XMLHttpRequest();
+
+                     if ( !httpRequest ) {
+                       reject('Giving up :( Cannot create an XMLHTTP instance');
+                     }
+                     
+                     httpRequest.open('GET', url);
+                     httpRequest.send();
+                     
+                     httpRequest.addEventListener('load', httpResolve.bind(httpRequest));
+                     httpRequest.addEventListener('error', httpReject.bind(httpRequest));
+                     
+                     function httpResolve() {                        
+                        if ( this.status >= 200 && this.status < 300 ) {
+                            // Performs the function "resolve" when this.status is equal to 2xx
+                            resolve(JSON.parse(this.response));
+                        } else {
+                            // Performs the function "reject" when this.status is different than 2xx
+                            reject(this.statusText);
+                        }                          
+                     }
+                     
+                     function httpReject() {
+                         reject(this.statusText);
+                     }
+
+                }
+                
+
+                // Return the promise
+                return promise;
+            }
+            
+            var callback = {
+                      
+              'success': function(data) {
+                displayContent('p', data);
+            },
+            
+              'error': function(data) {
+                console.log('error');
+              }
+            };
+            
+            function displayContent(selector, item) {
+                console.log(item);
+                var dom = document.querySelector(selector);
+                var docfrag = document.createDocumentFragment();
+                while (dom.firstChild) {
+                    dom.removeChild(dom.firstChild);
+                }   
+                item.forEach(function(value)
+                {docfrag.appendChild( createParagraphElement('Title: ', value.title) );
+                 console.log("Title: " + value.title);
+                //docfrag.appendChild( completed );
+                dom.appendChild(docfrag);
+            });
+            }
+            
+            function createParagraphElement(label, text) {
+                var pTag = document.createElement('p'),
+                    strongTag = document.createElement('strong'),
+                    strongText = document.createTextNode(label),
+                    pText = document.createTextNode(text);
+          
+                    strongTag.appendChild(strongText);
+                    pTag.appendChild(strongTag);  
+                    pTag.appendChild(pText);  
+                    return pTag;
+            }
+            
+            window.addEventListener('load', makeRequest('http://localhost:3000/todo').then(callback.success, callback.error));
+        </script>
+    </body>
+</html>
