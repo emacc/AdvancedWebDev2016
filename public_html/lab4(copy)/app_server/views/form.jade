@@ -1,0 +1,22 @@
+extends layout
+
+block content
+ h1.title=title
+ div.nav
+    a.link(href="./") Home
+    a.link(href="./form") Form
+    a.link(href="./about") About
+ div.content
+    h2=message
+    form.form-horizontal(action="/form", method="post", role="form")
+           .form-group
+           div 
+             label.control-label(for="name") Name         
+               input#name.form-control.name(name="name") 
+           div 
+               label.control-label(for="email") Email         
+                   input#name.form-control.email(name="email")     
+           div 
+               label.control-label(for="comments") Comments         
+                   input#name.form-control(name="comments")          
+           input.submit(type="submit" value="Add Information") 
