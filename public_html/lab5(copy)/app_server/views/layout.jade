@@ -1,0 +1,43 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title   
+    link(rel='stylesheet', href='/css/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans|Raleway:600' rel='stylesheet')
+  body
+    
+    .container
+      block content
+script(type="text/javascript").
+    //window.onload = function ()
+    { 
+        /*console.log('success');
+        var labels = document.querySelector('.empty');
+
+        try 
+        {
+            var startDateVal = document.querySelector('#startDate');
+            startDateVal.valueAsDate = new Date(startDateVal.defaultValue);
+            startDateVal.valueAsDate = new Date(Date.UTC(2013, 1, 1, 14, 0, 0));
+            //startDateVal.valueAsDate.getTimezoneOffset();
+            //var myDate = new Date(startDateVal.value);
+            //myDate = myDate.toLocaleDateString("en-US")
+            //startDateVal.valueAsDate = new Date(myDate);
+        }
+        catch(err)
+        {
+            console.log(err.message);
+        }
+
+        var startDateVal = document.querySelector('#startDate');
+        var myDate = new Date(Date.UTC(2013, 1, 1, 14, 0, 0));
+        var myDate = startDateVal.defaultValue;
+        startDateVal.value = myDate.toISOString().substring(0, 10);
+        console.log(myDate);
+        var viewDate = document.querySelector('.viewDate');
+        viewDate = new Date(viewDate.innerHTML);
+        console.log(startDateVal);
+        console.log(viewDate);
+        */
+    };

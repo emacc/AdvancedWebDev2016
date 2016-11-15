@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title   
+    link(rel='stylesheet', href='/css/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans|Raleway:600' rel='stylesheet')
+  
+  body
+
+    block content
+    h1.title=title
+    div.nav
+        a(href="../") Home
+    h2.success=removed
+    div.content.viewContent
+     div.tablediv
+      table(border="1")
+        thead   
+            tr
+                th First Name
+                th Last Name
+                th Department
+                th Start Date
+                th Job Title
+                th Salary
+        tbody
+        - each stuff in results
+            tr
+                td 
+                    = stuff.firstName
+                td 
+                    = stuff.lastName
+                td 
+                    = stuff.department
+                td.viewDate 
+                    = stuff.startDate
+                td 
+                    = stuff.jobTitle
+                td 
+                    = stuff.salary
+                td
+                    a(href="../update/#{stuff._id}") Update
+                td
+                    a(href="../view/#{stuff._id}") Delete

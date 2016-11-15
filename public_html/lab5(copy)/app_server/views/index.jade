@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title   
+    link(rel='stylesheet', href='/css/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans|Raleway:600' rel='stylesheet')
+  
+  body
+
+ 
+    block content
+
+     script(type="text/javascript").
+        {
+            window.onload = function() {
+                var msg = document.querySelector(".success")
+                try
+                {
+                    if (msg.innerHTML === "")
+                    {
+                        msg.style.display = "none";
+                    }
+                    else
+                    {
+                        msg.style.display = "block";
+                    }
+                }
+                catch(err)
+                {
+                    console.log(err.message)
+                }
+            }
+        }  
+     h1.title=title
+     div.nav
+        a(href="./view") View
+     h2.success=message
+     div.feedback
+        if error != undefined
+           each thing in error
+               div.item #{thing}
+     div.content
+
+        form.form-horizontal(action="/", method="post", role="form")
+            div
+                label(for="firstName") First Name
+                    input#firstName.empty(name="firstName" value= firstName)
+            div
+                label(for="lastName") Last Name
+                    input#name.empty(name="lastName" value= lastName)
+            div
+                label(for="department") Department
+                    input#name.empty(name="department" value= department)
+            div
+                label(for="startDate") Start Date
+                    input#date.empty(name="startDate" type="date" value= startDate)
+            div
+                label(for="jobTitle") Job Title
+                    input(name="jobTitle" value= jobTitle)
+            div
+                label(for="salary") Salary
+                    input(name="salary" value= salary)
+            div
+                input.homeSubmit(type="submit" value="Add Employee") 
